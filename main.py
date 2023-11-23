@@ -1,0 +1,31 @@
+import csv
+import requests
+
+# Jira Cloud REST API endpoint
+api_url = "https://your-jira-instance.atlassian.net"
+
+# Jira credentials
+username = "your-username"
+api_token = "your-api-token"
+
+# Function to remove groups from issue security scheme levels
+def remove_groups_from_security_scheme(scheme_id, level_id, memberId):
+    # Construct the URL to remove groups from the security scheme level
+    remove_groups_url = f"{api_url}/rest/api/3/issuesecurityschemes/{scheme_id}/level/{level_id}/member/{memberId}"
+
+    # Send a DELETE request to remove the groups
+    response = requests.delete(remove_groups_url, auth=(username, api_token))
+    if response.status_code == 204:
+        print(f"Groups removed from security scheme level {level_id} in scheme {scheme_id}")
+    else:
+        print(f"Failed to remove groups from security scheme level {level_id} in scheme {scheme_id}")
+
+# Read the CSV file and process each row
+with open("files/remove-member-testmigration_2023-11-23T11 57 41.605Z.csv", "r") as file:
+    reader = csv.reader(file)
+    next(reader)
+    for row in reader:
+        scheme_id = row[1]
+        level_id = row[2]
+        memberId = row[0]
+        remove_groups_from_security_scheme(scheme_id, level_id, memberId)
