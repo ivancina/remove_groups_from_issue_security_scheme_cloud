@@ -1,0 +1,64 @@
+# Jira Security Scheme Group Removal Script
+
+This script is used to remove groups from issue security scheme levels in Jira Cloud using the Jira REST API.
+
+## Prerequisites
+
+- Python 3.x installed on your system
+- Required Python packages: `csv` and `requests`
+
+## Setup
+
+1. Clone this repository to your local machine.
+
+2. Install the required Python packages by running the following command:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+3. Open the `script.py` file in a text editor.
+
+4. Update the following variables with your Jira Cloud details:
+
+- `api_url`: The URL of your Jira Cloud REST API endpoint.
+- `username`: Your Jira username.
+- `api_token`: Your Jira API token.
+
+5. Save the changes to the `script.py` file.
+
+## Usage
+
+1. Prepare a CSV file with the list of groups to be removed from the security scheme levels. The CSV file should have the following columns:
+
+- `memberId`: The ID of the group to be removed.
+- `scheme_id`: The ID of the security scheme.
+- `level_id`: The ID of the security scheme level.
+
+Example CSV file content:
+memberId,scheme_id,level_id group1,123,456 group2,789,012
+
+2. Place the CSV file in the same directory as the `script.py` file.
+
+3. Open a terminal or command prompt and navigate to the directory containing the `script.py` file.
+
+4. Run the script using the following command:
+
+    ```bash
+    python script.py
+    ```
+
+The script will read the CSV file and remove the specified groups from the corresponding security scheme levels in Jira Cloud.
+
+5. Check the output in the terminal to see the status of group removal. Successful removals will be indicated, and any failures will be reported.
+
+6. Customize the script as needed for your specific requirements.
+
+## Troubleshooting
+
+- If you encounter any issues or errors, please refer to the error messages displayed in the terminal for troubleshooting guidance.
+
+- Ensure that you have a stable internet connection and that the provided Jira Cloud URL, username, and API token are correct.
+
+- Make sure that the CSV file is properly formatted and contains the required columns.
+
+- If you need further assistance, please reach out to the script maintainer.
