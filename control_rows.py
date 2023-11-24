@@ -2,11 +2,11 @@ import csv
 import requests
 
 # Jira Cloud REST API endpoint
-api_url = "https://your-jira-instance.atlassian.net"
+api_url = "your_site_url"
 
 # Jira credentials
-username = "your-username"
-api_token = "your-api-token"
+username = "your_username"
+api_token = "your_api_token"
 
 # Function to remove groups from issue security scheme levels
 def remove_groups_from_security_scheme(scheme_id, level_id, memberId):
@@ -32,13 +32,14 @@ with open("files/remove-member-testmigration_2023-11-23T11 57 41.605Z.csv") as f
     for row in reader:
         # Increment the counter
         row_count += 1
+        print("Sad smo tu: " + str(row_count))
         scheme_id = row[1]
         level_id = row[2]
         memberId = row[0]
         remove_groups_from_security_scheme(scheme_id, level_id, memberId)
 
         # Check if it's the second row
-        if row_count == 2:
+        if row_count == 6:
             # Process the second row
             print(row)
 
